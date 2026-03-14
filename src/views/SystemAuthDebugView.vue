@@ -21,6 +21,7 @@
           <AmuButton :type="httpDebugEnabled ? 'primary' : 'default'" @click="toggleHttpDebug">
             {{ httpDebugEnabled ? '关闭 HTTP 调试日志' : '开启 HTTP 调试日志' }}
           </AmuButton>
+          <AmuButton v-if="mockApiEnabled" status="warning" @click="resetMockDemoData">恢复初始演示数据</AmuButton>
         </AmuSpace>
 
         <AmuSpace wrap>
@@ -54,11 +55,13 @@ import { AmuButton } from 'amu-ui/button'
 import { AmuCard } from 'amu-ui/card'
 import { AmuDescriptions, AmuDescriptionsItem } from 'amu-ui/descriptions'
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { AmuSpace } from 'amu-ui/space'
 import { AmuTag } from 'amu-ui/tag'
 import { AmuMessage } from 'amu-ui/message'
 import { loginByPassword } from '../api/auth'
 import { fetchDashboardOverview } from '../api/dashboard'
+import { isMockApiEnabled, resetMockDatabase } from '../mock/server'
 import { cancelRequest, requestGet } from '../api/http'
 import { useAuthStore } from '../store/auth'
 import { isHttpDebugEnabled, setHttpDebugEnabled } from '../utils/http-debug'
@@ -69,9 +72,11 @@ defineOptions({
 })
 
 const authStore = useAuthStore()
+const router = useRouter()
 const logs = ref<string[]>([])
 const scriptRunning = ref(false)
 const httpDebugEnabled = ref(isHttpDebugEnabled())
+const mockApiEnabled = isMockApiEnabled()
 let concurrentBatch = 0
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -155,6 +160,39 @@ const toggleHttpDebug = () => {
   httpDebugEnabled.value = !httpDebugEnabled.value
   setHttpDebugEnabled(httpDebugEnabled.value)
   appendLog(httpDebugEnabled.value ? '已开启 HTTP 调试日志（控制台可查看）' : '已关闭 HTTP 调试日志')
+}
+
+const resetMockDemoData = async () => {
+  if (!mockApiEnabled) {
+    AmuMessage.warning({ message: '当前不是 mock 模式，无法重置演示数据' })
+    return
+  }
+
+  const preferredUsername = authStore.user?.username || 'admin'
+  const preferredAccount = DEMO_ACCOUNTS.find((account) => account.username === preferredUsername)
+  const nextUsername = preferredAccount?.username || preferredUsername
+  const nextPassword = preferredAccount?.password || '123456'
+
+  resetMockDatabase()
+  appendLog('已恢复 mock 初始数据种子')
+
+  try {
+    const nextSession = await loginByPassword(nextUsername, nextPassword)
+    authStore.applySession({
+      accessToken: nextSession.accessToken,
+      refreshToken: nextSession.refreshToken,
+      expiresAt: Date.now() + nextSession.expiresIn * 1000,
+      currentUser: nextSession.currentUser,
+      menus: nextSession.menus
+    })
+    appendLog(`已重新建立 ${nextUsername} 的演示会话`)
+    AmuMessage.success({ message: '演示数据已恢复到初始状态' })
+  } catch (error) {
+    appendLog(`恢复后重建会话失败：${(error as Error).message}`)
+    await authStore.logout()
+    await router.replace('/login')
+    AmuMessage.warning({ message: '演示数据已恢复，请重新登录' })
+  }
 }
 
 const runScriptedReplay = async () => {

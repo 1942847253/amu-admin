@@ -4,6 +4,8 @@ export interface ApiResponse<T = unknown> {
   data: T
 }
 
+import { createMockAdapter, isMockApiEnabled } from '../mock/server'
+
 export interface HttpResponseLike {
   status: number
   json: <T = unknown>() => Promise<T>
@@ -92,6 +94,10 @@ const buildUrl = (url: string, params: ResolvedRequestConfig['params']) => {
 }
 
 const defaultAdapter: HttpAdapter = async (config) => {
+  if (isMockApiEnabled()) {
+    return createMockAdapter(config)
+  }
+
   const timeoutController = new AbortController()
   const timer = setTimeout(() => timeoutController.abort(), config.timeout)
 

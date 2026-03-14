@@ -45,6 +45,7 @@ jobs:
         run: pnpm build
         env:
           VITE_USE_WORKSPACE_SOURCE: false
+          VITE_USE_MOCK_API: true
           VITE_API_BASE_URL: ${{ vars.AMU_ADMIN_API_BASE_URL }}
           VITE_APP_BASE_PATH: ${{ vars.AMU_ADMIN_PAGES_BASE_PATH || format('/{0}/', github.event.repository.name) }}
 

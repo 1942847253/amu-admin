@@ -45,6 +45,7 @@ pnpm dev
 
 - `VITE_DEV_PORT`：前端 dev server 端口，默认 `5174`
 - `VITE_API_PROXY_TARGET`：本地开发时 `/api` 代理目标
+- `VITE_USE_MOCK_API`：是否启用纯前端 Mock 演示；默认建议为 `true`
 - `VITE_API_BASE_URL`：生产环境后端地址；当前端部署到 GitHub Pages、Cloudflare Pages 等静态托管平台时使用
 - `VITE_USE_WORKSPACE_SOURCE`：独立仓库中建议固定为 `false`
 - `VITE_APP_BASE_PATH`：前端访问基路径；GitHub Pages 默认地址通常填 `/<repo>/`
@@ -57,16 +58,22 @@ pnpm dev
 如果你要把前端部署到 GitHub Pages，请在 `.env.production` 或构建环境变量中设置：
 
 ```bash
-VITE_API_BASE_URL=https://your-api.example.com
+VITE_USE_MOCK_API=true
 VITE_APP_BASE_PATH=/your-repo/
 VITE_USE_WORKSPACE_SOURCE=false
 ```
 
 其中：
 
-- `VITE_API_BASE_URL` 指向真实后端服务
+- `VITE_USE_MOCK_API=true` 表示直接使用浏览器本地 Mock 数据运行整套后台演示
 - `VITE_APP_BASE_PATH` 在默认 GitHub Pages 地址下通常等于仓库名路径
 - 如果你给 GitHub Pages 绑定了自定义域名，`VITE_APP_BASE_PATH` 通常改为 `/`
+
+如果你后续切回真实后端，再把 `VITE_USE_MOCK_API=false`，并补上：
+
+```bash
+VITE_API_BASE_URL=https://your-api.example.com
+```
 
 ## 常用命令
 
