@@ -1,1 +1,0 @@
-import{Z as s}from"./@vue.0f0518a1.js";const t=(e,r,u)=>{r===""||r.length<5?u(new Error("\u7528\u6237\u540D\u5FC5\u987B\u5927\u4E8E5\u4F4D\u6570")):u()},a=(e,r,u)=>{r===""||r.length<5?u(new Error("\u5BC6\u7801\u957F\u5EA6\u4E0D\u5F97\u5C11\u4E8E5\u4F4D")):u()},i=s({username:[{validator:t,trigger:"blur"}],password:[{validator:a,trigger:"blur"}]});export{a,i as r,t as v};

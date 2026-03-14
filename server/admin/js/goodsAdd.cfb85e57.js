@@ -1,1 +1,0 @@
-import{_ as o}from"./vue-count-to.713368f2.js";import{d as e,o as t,c as r}from"./@vue.0f0518a1.js";const s=e({setup(){}});function n(d,a,c,p,_,f){return t(),r("div",null,"GoodsAdd")}var l=o(s,[["render",n]]);export{l as default};

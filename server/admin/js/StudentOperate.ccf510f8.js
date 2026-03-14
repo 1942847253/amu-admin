@@ -1,1 +1,0 @@
-import{_ as e}from"./vue-count-to.713368f2.js";import{d as t,o,c as r}from"./@vue.0f0518a1.js";const n=t({setup(){}});function a(p,s,c,d,_,f){return o(),r("div",null,"StudentOperate")}var m=e(n,[["render",a]]);export{m as default};

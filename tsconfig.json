@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "amu-ui": ["../../dist/types/components/index.d.ts"],
+      "amu-ui/theme": ["../../dist/types/theme/index.d.ts"],
+      "amu-ui/*": ["../../dist/types/components/*/index.d.ts"],
+      "@amu-ui/icons": ["../../packages/icons/dist/types/index.d.ts"],
+      "@amu-ui/hooks": ["../../packages/hooks/dist/types/index.d.ts"],
+      "@amu-ui/locale": ["../../packages/locale/dist/types/index.d.ts"],
+      "@amu-ui/utils": ["../../packages/utils/index.ts"]
+    },
+    "skipLibCheck": true,
+    "useDefineForClassFields": true,
+    "noEmit": true
+  },
+  "include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue"]
+}

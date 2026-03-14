@@ -1,1 +1,0 @@
-import{_ as n}from"./vue-count-to.713368f2.js";import{G as e,H as a,Y as s,o,as as c,L as _}from"./@vue.0f0518a1.js";const l={};function i(m,p){const r=s("router-view");return o(),e(r,null,{default:a(({Component:t})=>[(o(),e(c,null,[(o(),e(_(t)))],1024))]),_:1})}var v=n(l,[["render",i]]);export{v as default};

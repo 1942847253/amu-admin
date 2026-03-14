@@ -1,0 +1,60 @@
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--amu-color-bg-fill);
+  color: var(--amu-color-text-default);
+}
+
+[data-amu-theme='dark'] body {
+  background: var(--amu-color-bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-card {
+  background: var(--amu-color-bg-elevated);
+  border: 1px solid var(--amu-color-border);
+  border-radius: var(--amu-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s;
+}
+
+.page-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.page-container .page-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container .page-card :deep(.amu-card__body) {
+  flex: 1;
+  overflow: hidden;
+}
