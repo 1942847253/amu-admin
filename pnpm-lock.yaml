@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@amu-ui/icons':
-        specifier: ^0.2.0
+        specifier: latest
         version: 0.2.0(vue@3.5.30(typescript@5.8.3))
       amu-ui:
-        specifier: ^2.1.0
-        version: 2.1.2(vue@3.5.30(typescript@5.8.3))
+        specifier: latest
+        version: 2.1.3(vue@3.5.30(typescript@5.8.3))
       echarts:
         specifier: ^6.0.0
         version: 6.0.0
@@ -680,8 +680,8 @@ packages:
   alien-signals@3.1.2:
     resolution: {integrity: sha512-d9dYqZTS90WLiU0I5c6DHj/HcKkF8ZyGN3G5x8wSbslulz70KOxaqCT0hQCo9KOyhVqzqGojvNdJXoTumZOtcw==}
 
-  amu-ui@2.1.2:
-    resolution: {integrity: sha512-BYi5nSlh7YGXdK9L5msNVqs4bl5iEdzER+uQm2joiVtlTJyVqlGQ3BH3LydFViF04XfP/uI6aU2Fzqhy448sEw==}
+  amu-ui@2.1.3:
+    resolution: {integrity: sha512-j+C88Fpu61stGe9ros216y+B0qpmMtUYMzwREhy9yAjk3dGfHMdmTu9xI4RafCHjj8KcY/2F0MifOBR+8S8cfg==}
     peerDependencies:
       vue: ^3.4.0
 
@@ -1840,7 +1840,7 @@ snapshots:
 
   alien-signals@3.1.2: {}
 
-  amu-ui@2.1.2(vue@3.5.30(typescript@5.8.3)):
+  amu-ui@2.1.3(vue@3.5.30(typescript@5.8.3)):
     dependencies:
       '@amu-ui/hooks': 0.1.0(vue@3.5.30(typescript@5.8.3))
       '@amu-ui/icons': 0.2.0(vue@3.5.30(typescript@5.8.3))

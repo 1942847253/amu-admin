@@ -238,7 +238,7 @@ const initialLoginLayout = readStorage(LOGIN_LAYOUT_KEY)
 const loginLayout = ref<LoginLayoutMode>(
   initialLoginLayout === 'left' || initialLoginLayout === 'center' || initialLoginLayout === 'right'
     ? initialLoginLayout
-    : 'center'
+    : 'right'
 )
 
 const colorPresets = ['#1677ff', '#0ea5e9', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6']

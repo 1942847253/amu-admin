@@ -17,8 +17,8 @@
     "test:watch": "vitest --config vitest.config.ts"
   },
   "dependencies": {
-    "@amu-ui/icons": "^0.2.0",
-    "amu-ui": "^2.1.0",
+    "@amu-ui/icons": "latest",
+    "amu-ui": "latest",
     "echarts": "^6.0.0",
     "pinia": "^3.0.3",
     "vue": "^3.5.18",
