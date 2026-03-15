@@ -5,6 +5,7 @@ import { useAuthStore } from '../src/store/auth'
 
 describe('amu-admin auth store', () => {
   beforeEach(() => {
+    vi.stubEnv('VITE_USE_MOCK_API', 'false')
     localStorage.clear()
     setActivePinia(createPinia())
     vi.stubGlobal('fetch', vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -44,6 +45,7 @@ describe('amu-admin auth store', () => {
   })
 
   afterEach(() => {
+    vi.unstubAllEnvs()
     vi.unstubAllGlobals()
   })
 

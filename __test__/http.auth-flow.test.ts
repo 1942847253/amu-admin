@@ -6,11 +6,13 @@ import { useAuthStore } from '../src/store/auth'
 
 describe('amu-admin http auth flow', () => {
   beforeEach(() => {
+    vi.stubEnv('VITE_USE_MOCK_API', 'false')
     localStorage.clear()
     setActivePinia(createPinia())
   })
 
   afterEach(() => {
+    vi.unstubAllEnvs()
     vi.unstubAllGlobals()
   })
 
